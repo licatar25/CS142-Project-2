@@ -13,7 +13,7 @@ private:
 	int yob_;
 	bool reg_stat_;
 	int age_;
-
+	std::string category_;
 };
 
 
