@@ -8,7 +8,7 @@
 class Player//contains the actual information of each player
 {
 public:
-
+	Player() : f_name_("Undefined"),l_name_("Undefined"), {}
 
 private:
 	std::string f_name_;
