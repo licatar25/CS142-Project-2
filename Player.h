@@ -12,7 +12,7 @@ private:
 	std::string l_name_;
 	int yob_;
 	bool reg_stat_;
-	int category_;
+	int age_;
 
 };
 
