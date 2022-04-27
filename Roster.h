@@ -26,7 +26,7 @@ void Roster::make_player() {
 	std::string lname;
 	int yob;
 	bool reg_stat;
-	std::cin >> lname >> fname >> yob >> reg_stat;
+	std::cin >> lname >> fname >> yob >> reg_stat;//maybe change the method of input
 	player_(fname, lname, yob, reg_stat, season_year_);
 	if ((player_.age_ >= 6) && (player_.age_ <= 16)) roster[lname] = player_;
 }
