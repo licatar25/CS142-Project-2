@@ -14,11 +14,11 @@ class RosterViewer
 public:
 	RosterViewer() {}
 	void run();//needs to be implemented, please update when implemented
-
+	Roster roster_;
 private:
 	void execute(char command, bool& done);
 	
-	Roster roster_;
+	//Roster roster_;
 
 };
 
