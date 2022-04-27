@@ -1,0 +1,40 @@
+RosterViewer
+--------------------------------------
+Menu:
+1. Start a New Season
+2. Add a player
+3. Search for players
+4. Print a list of all players
+5. Display statistics
+9. Quit
+--------------------------------------
+Command Number:
+
+
+SEARCH VIEW
+
+RosterViewer
+Player: 14/26
+--------------------------------------
+Pepper, Niall
+2003
+U20
+Paid
+--------------------------------------
+next | previous | edit | search | print | exit
+Command:
+
+SEARCH VIEW ERROR
+
+RosterViewer
+Player 14/26
+--------------------------------------
+Pepper, Niall
+2003
+U20
+Paid
+---------------------------------------
+next | previous | edit | search | print | exit
+
+ERROR: No player found that matches search terms.
+Command:
