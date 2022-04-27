@@ -15,7 +15,7 @@ public:
 
 	int season_year_;
 private:
-
+	Player player_;
 	roster_map_ roster;
 };
 
