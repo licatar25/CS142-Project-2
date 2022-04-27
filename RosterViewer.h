@@ -53,7 +53,11 @@ void RosterViewer::execute(const char command, bool& done)
 		}
 	}
 	case '2': addplayer();
-	case '3': 
+	case '3': ;//search for player
+	case '4': std::cout << "Enter the name of the file that you want the roster to be printed to: ";
+		std::string file_name;
+		std::cin >> file_name;
+		roster_.print_roster(file_name);
 
 	}
 }

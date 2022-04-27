@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <map>
+#include <fstream>
 
 #include "Player.h"
 #include "RosterViewer.h"
@@ -15,6 +16,7 @@ public:
 	void clear_roster() { roster.clear(); }//to be used for the new season command ---- maybe switch to private eventually?
 	void display();
 	void make_player(std::string fname, std::string lname, int yob, std::string reg_stat); //temporary, maybe
+	void print_roster(const std::string& file_name);
 private:
 	int season_year_;
 	Player player_;
@@ -28,5 +30,13 @@ void Roster::make_player(std::string fname, std::string lname, int yob, std::str
 
 void Roster::display() {
 
+}
+
+void Roster::print_roster(const std::string& file_name) {
+	std::ofstream out(file_name);
+	auto itr = roster.begin();
+	while (itr != roster.end()) {
+		//print all if in main view, is search view only print the results
+	}
 }
 #endif
