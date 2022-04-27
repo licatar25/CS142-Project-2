@@ -12,6 +12,8 @@ class Roster //has the list of players and uses class Player to get info about e
 {
 public:
 	void clear_roster() { roster.clear(); }//to be used for the new season command ---- maybe switch to private eventually?
+
+	int season_year_;
 private:
 
 	roster_map_ roster;
