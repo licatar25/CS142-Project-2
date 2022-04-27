@@ -8,7 +8,7 @@
 class Player//contains the actual information of each player
 {
 public:
-	friend void Roster::make_player();
+	friend void Roster::make_player(std::string fname, std::string lname, int yob, std::string reg_stat);
 
 	Player() : f_name_("Undefined"),l_name_("Undefined"), yob_(9999),reg_stat_(false) {}
 	Player(std::string fname, std::string lname, int yob, bool reg_stat,int season_year) : 
@@ -38,6 +38,5 @@ std::string Player::calc_category() {
 	if ((age_ < 10) && (age_ >= 8)) category_ = "U10";
 	if ((age_ < 8) && (age_ >= 6)) category_ = "U8";
 	if ((age_ < 6) && (age_ >= 4)) category_ = "U6";
-	else std::cout << error_message; 
 };
 #endif
