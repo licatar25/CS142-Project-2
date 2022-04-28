@@ -45,7 +45,7 @@ void Roster::print_roster(const std::string& file_name) {
 	int s_roster_size = search_roster.size();
 	if (true) {//in main view(true is a placeholder to prevent compiling/autocorrect errors
 		while (itr != roster.end()) {
-			itr -> second = player_;
+			player_ = itr -> second;
 			out << "Player " << count << "/" << roster_size << std::endl;
 			out << "--------------------------------------\n";
 			out << player_.l_name_ << ", " << player_.f_name_ << std::endl;
@@ -57,7 +57,7 @@ void Roster::print_roster(const std::string& file_name) {
 	}
 	else {//in search view
 		while (itr != search_roster.end()) {
-			itr->second = player_;
+			player_ = itr->second;
 			out << "Player " << count << "/" << s_roster_size << std::endl;
 			out << "--------------------------------------\n";
 			out << player_.l_name_ << ", " << player_.f_name_ << std::endl;
@@ -72,7 +72,7 @@ void Roster::print_roster(const std::string& file_name) {
 int Roster::count_paid() {
 	auto itr = roster.begin();
 	while (itr != roster.end()) {
-		itr -> second = player_;
+		player_ = itr -> second;
 		if (player_.reg_stat_ == true) ++num_paid;
 	}
 	return num_paid;
