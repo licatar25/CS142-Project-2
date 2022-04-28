@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include <string>
 
 #include "Player.h"
 #include "RosterViewer.h"
@@ -19,6 +20,7 @@ public:
 	void print_roster(const std::string& file_name);
 	int count_paid() {};
 	int roster_size = roster.size();
+	int roster_open_size;
 	void read_file(std::string filename);
 private:
 	int season_year_; 
@@ -30,7 +32,7 @@ private:
 
 void Roster::make_player(std::string fname, std::string lname, int yob, std::string reg_stat) {
 	player_(fname, lname, yob, reg_stat, season_year_);
-	if ((player_.age_ >= 6) && (player_.age_ <= 16)) roster[lname] = player_;
+	if ((player_.get_age() >= 6) && (player_.get_age() <= 16)) roster[lname] = player_;
 }
 
 void Roster::display() {
@@ -48,8 +50,8 @@ void Roster::print_roster(const std::string& file_name) {
 			player_ = itr -> second;
 			out << "Player " << count << "/" << roster_size << std::endl;
 			out << "--------------------------------------\n";
-			out << player_.l_name_ << ", " << player_.f_name_ << std::endl;
-			out << player_.yob_ << std::endl << player_.category_ << std::endl << player_.reg_stat_ << std::endl;
+			out << player_.get_lname() << ',' << player_.get_fname() << std::endl;
+			out << player_.get_yob() << std::endl << player_.get_cat() << std::endl << player_.get_regstat() << std::endl;
 			out << "--------------------------------------\n\n";
 			count++;
 			++itr;
@@ -60,8 +62,8 @@ void Roster::print_roster(const std::string& file_name) {
 			player_ = itr->second;
 			out << "Player " << count << "/" << s_roster_size << std::endl;
 			out << "--------------------------------------\n";
-			out << player_.l_name_ << ", " << player_.f_name_ << std::endl;
-			out << player_.yob_ << std::endl << player_.category_ << std::endl << player_.reg_stat_ << std::endl;
+			out << player_.get_lname() << ',' << player_.get_fname() << std::endl;
+			out << player_.get_yob() << std::endl << player_.get_cat() << std::endl << player_.get_regstat() << std::endl;
 			out << "--------------------------------------\n\n";
 			count++;
 			++itr;
@@ -73,7 +75,7 @@ int Roster::count_paid() {
 	auto itr = roster.begin();
 	while (itr != roster.end()) {
 		player_ = itr -> second;
-		if (player_.reg_stat_ == true) ++num_paid;
+		if (player_.get_regstat() == true) ++num_paid;
 	}
 	return num_paid;
 }
@@ -81,12 +83,54 @@ int Roster::count_paid() {
 void Roster::read_file(std::string filename) {
 	std::ifstream in(filename);
 	std::string dummy;//<-----------------------------best way is probably not to add dummy
+	int idummy;
 	std::string fname;
 	std::string lname;
 	int yob;
 	bool reg_stat;
+	in >> dummy >> idummy;
+	in.ignore();
+	in >> roster_open_size;
+	in.ignore();
 	getline(in, dummy);
+	in >> lname;
+	in.ignore();
+	in >> fname;
+	in.ignore();
+	in >> yob;
+	in.ignore();
+	std::getline(in, dummy);
+	in >> reg_stat;
+	in.ignore();
+	std::getline(in, dummy);
+	in.ignore();
+	for (int i = 0; i < roster_open_size; ++i) {
+		std::getline(in, dummy);
+		std::getline(in, dummy);
+		in >> lname;
+		in.ignore();
+		in >> fname;
+		in.ignore();
+		in >> yob;
+		in.ignore();
+		std::getline(in, dummy);
+		in >> reg_stat;
+		in.ignore();
+		std::getline(in, dummy);
+		in.ignore();
+	}
 
-
+/*
+	     /\
+	    //\\
+       ///\\\
+	  //----\\
+     /| O  O |\
+    //| \__/ |\\
+   ///| ---- |\\\
+	    |  |
+	    |  |
+	ThefuckinTree bro 
+*/
 }
 #endif

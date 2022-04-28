@@ -8,20 +8,20 @@
 class Player//contains the actual information of each player
 {
 public:
-	friend void Roster::make_player(std::string fname, std::string lname, int yob, std::string reg_stat);
-
 	Player() : f_name_("Undefined"),l_name_("Undefined"), yob_(9999),reg_stat_(false) {}
 	Player(std::string fname, std::string lname, int yob, bool reg_stat,int season_year) : 
 		f_name_(fname), l_name_(lname), yob_(yob), reg_stat_(reg_stat) {
 		age_ = season_year - yob_;
 		category_ = calc_category();
 	}
-
-
+	inline std::string get_lname() { return l_name_; }
+	inline std::string get_fname() { return f_name_; }
+	inline int get_yob() { return yob_; }
+	inline bool get_regstat() { return reg_stat_; }
+	inline std::string get_cat() { return category_; }
+	inline int get_age() { return age_; }
 private:
 	std::string calc_category();
-	inline std::string get_l_name() { return l_name_; };
-
 	std::string f_name_;
 	std::string l_name_;
 	int yob_;
