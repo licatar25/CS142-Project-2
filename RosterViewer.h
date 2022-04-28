@@ -29,13 +29,13 @@ void RosterViewer::display() {
 
 void RosterViewer::run()
 {
-	roster_.read_file(filename);
+	roster_.read_file("roster.txt");
 	bool done = false;
 	while (!done) {
 		display();
-		cout << "Command Number: ";
+		std::cout << "Command Number: ";
 		char command;
-		cin >> command;
+		std::cin >> command;
 		execute(command, done);
 	}
 
@@ -44,21 +44,31 @@ void RosterViewer::run()
 void RosterViewer::execute(const char command, bool& done)
 {
 	switch (command) {
-	case '1': {std::cout << "Are you sure that you want to start a new season?(y/n)" << endl;
+	case '1': {std::cout << "Are you sure that you want to start a new season?(y/n)" << std::endl;//start new season
 		char confirm;
 		if (confirm == 'y') {
 			roster_.clear_roster();
 			std::cout << "Please provide a season year: ";
-			cin >> roster_.year;
+			std::cin >> roster_.year;
 		}
 	}
-	case '2': addplayer();
-	case '3': ;//search for player
-	case '4': std::cout << "Enter the name of the file that you want the roster to be printed to: ";
+	case '2': addplayer();//add player
+	case '3':;//search for player
+	case '4': {std::cout << "Enter the name of the file that you want the roster to be printed to: ";//print to file
 		std::string file_name;
 		std::cin >> file_name;
 		roster_.print_roster(file_name);
-
+	}
+	case '5': {//stats
+		std::cout << "--------------------------------------\n\nNumber of Players: " << roster_.roster_size;
+		std::cout << "\n\nNumber of Paid Players: " << roster_.count_paid();
+		std::cout << "\n\nNumber of Unpaid Players: " << roster_.roster_size - roster_.count_paid();
+		std::cout << "\n\n--------------------------------------\n\n";
+	}
+	case '6': {
+		roster_.print_roster("roster.txt");
+		done = true;
+	}//save and quit
 	}
 }
 
@@ -67,12 +77,12 @@ void RosterViewer::addplayer() {
 	std::string lname;
 	int yob;
 	bool reg_stat;
-	cout << "Please enter the first and last name of the player: ";
-	cin >> fname >> lname;
-	cout << "\n\nPlease enter the year of birth of the player: ";
-	cin >> yob;
-	cout << "\n\nPlease enter the registration status of the player: ";
-	cin >> reg_stat;
+	std::cout << "Please enter the first and last name of the player: ";
+	std::cin >> fname >> lname;
+	std::cout << "\n\nPlease enter the year of birth of the player: ";
+	std::cin >> yob;
+	std::cout << "\n\nPlease enter the registration status of the player: ";
+	std::cin >> reg_stat;
 	roster_.make_player(fname, lname, yob, reg_stat);
 }
 
