@@ -25,14 +25,14 @@ public:
 private:
 	int season_year_; 
 	int num_paid;
-	Player player_;
+//	Player player_;
 	roster_map_ roster;
 	roster_map_ search_roster;
 };
 
 void Roster::make_player(std::string fname, std::string lname, int yob, std::string reg_stat) {
-	player_(fname, lname, yob, reg_stat, season_year_);
-	if ((player_.get_age() >= 6) && (player_.get_age() <= 16)) roster[lname] = player_;
+	Player player_(fname, lname, yob, reg_stat, season_year_);
+	if ((player_.get_age() >= 4) && (player_.get_age() <= 16)) roster[lname] = player_;
 }
 
 void Roster::display() {
