@@ -29,7 +29,7 @@ void RosterViewer::display() {
 
 void RosterViewer::run()
 {
-	roster_.read_file("roster.txt");
+	roster_.read_file("Roster.txt");
 	bool done = false;
 	while (!done) {
 		display();
@@ -51,24 +51,46 @@ void RosterViewer::execute(const char command, bool& done)
 			std::cout << "Please provide a season year: ";
 			std::cin >> roster_.year;
 		}
+		break;
 	}
-	case '2': addplayer();//add player
-	case '3':;//search for player
+	case '2': {addplayer();//add player
+		break;
+	}
+	case '3': {;//search for player
+		break;
+	}
 	case '4': {std::cout << "Enter the name of the file that you want the roster to be printed to: ";//print to file
 		std::string file_name;
 		std::cin >> file_name;
 		roster_.print_roster(file_name);
+		break;
 	}
 	case '5': {//stats
 		std::cout << "--------------------------------------\n\nNumber of Players: " << roster_.roster_size;
 		std::cout << "\n\nNumber of Paid Players: " << roster_.count_paid();
 		std::cout << "\n\nNumber of Unpaid Players: " << roster_.roster_size - roster_.count_paid();
 		std::cout << "\n\n--------------------------------------\n\n";
+		break;
 	}
-	case '6': {
+	case '6': {//save and quit
 		roster_.print_roster("roster.txt");
 		done = true;
-	}//save and quit
+		break;
+	}
+	case 'n': { //next player in search view
+
+	}
+	case 'p': { //previous player in search view
+
+	}
+	case 'e': { // edit from within search view
+
+	}
+	case 's': { //search from within search view, probably just run the same function as in main
+
+	}
+	case 'p': { //print roster within search view
+	}
 	}
 }
 
