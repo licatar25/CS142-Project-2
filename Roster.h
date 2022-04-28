@@ -21,6 +21,7 @@ private:
 	int season_year_;
 	Player player_;
 	roster_map_ roster;
+	roster_map_ search_roster;
 };
 
 void Roster::make_player(std::string fname, std::string lname, int yob, std::string reg_stat) {
@@ -35,8 +36,12 @@ void Roster::display() {
 void Roster::print_roster(const std::string& file_name) {
 	std::ofstream out(file_name);
 	auto itr = roster.begin();
-	while (itr != roster.end()) {
-		//print all if in main view, is search view only print the results
+	if (true) {//in main view(true is a placeholder to prevent compiling/autocorrect errors
+		while (itr != roster.end()) {
+			itr -> second = player_;
+			out << player_.l_name_ << ", " << player_.f_name_ << std::endl;
+
+		}
 	}
 }
 #endif
