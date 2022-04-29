@@ -25,7 +25,6 @@ public:
 private:
 	int season_year_; 
 	int num_paid;
-//	Player player_;<-----------------------------------------------possibly delete
 	roster_map_ roster;
 	roster_map_ search_roster;
 	void print_cat(const std::string& category, std::ostream& out, Player player_);
@@ -40,7 +39,7 @@ void Roster::display() {
 
 }
 
-void Roster::print_cat(const std::string& category,std::ostream& out, Player player_) {
+void Roster::print_cat(const std::string& category, std::ostream& out, Player player_) {
 	auto itr = roster.begin();
 	int count = 0;
 	int cat_roster_size; 
@@ -143,17 +142,5 @@ void Roster::read_file(const std::string& filename) {
 		in.ignore();
 	}
 
-/*
-	     /\
-	    //\\
-       ///\\\
-	  //----\\
-     /| O  O |\
-    //| \__/ |\\
-   ///| ---- |\\\
-	    |  |
-	    |  |
-	ThefuckinTree bro 
-*/
 }
 #endif
