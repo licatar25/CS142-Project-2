@@ -41,7 +41,7 @@ void Roster::display() {
 void Roster::print_cat(const std::string& category, std::ostream& out, Player& player_) {
 	auto itr = roster.begin();
 	int count = 0;
-	int cat_roster_size; 
+	int cat_roster_size = 0; 
 
 	while (itr != roster.end()) {
 		player_ = itr->second;
