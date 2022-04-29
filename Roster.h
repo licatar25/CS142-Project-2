@@ -18,7 +18,7 @@ public:
 	void display();
 	void make_player(const std::string& fname, const std::string& lname, const int yob, const bool reg_stat); //temporary, maybe
 	void print_roster(const std::string& file_name);
-	int count_paid() {};
+	int count_paid();
 	int roster_size = roster.size();
 	int roster_open_size;
 	void read_file(const std::string& filename);
