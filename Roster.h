@@ -28,7 +28,7 @@ private:
 //	Player player_;<-----------------------------------------------possibly delete
 	roster_map_ roster;
 	roster_map_ search_roster;
-	void print_cat(const std::string& category, ostream& out, Player player_);
+	void print_cat(const std::string& category, std::ostream& out, Player player_);
 };
 
 void Roster::make_player(const std::string& fname, const std::string& lname, const int yob, const bool reg_stat) {
@@ -40,7 +40,7 @@ void Roster::display() {
 
 }
 
-void Roster::print_cat(const std::string& category,ostream& out, Player player_) {
+void Roster::print_cat(const std::string& category,std::ostream& out, Player player_) {
 	auto itr = roster.begin();
 	int count = 0;
 	int cat_roster_size; 
@@ -72,7 +72,12 @@ void Roster::print_roster(const std::string& file_name) {
 	int roster_size = roster.size();
 	int s_roster_size = search_roster.size();
 	if (true) {//in main view(true is a placeholder to prevent compiling/autocorrect errors
-		print_cat()
+		print_cat("U17",out,player_);
+		print_cat("U14", out, player_);
+		print_cat("U12", out, player_);
+		print_cat("U10", out, player_);
+		print_cat("U8", out, player_);
+		print_cat("U6", out, player_);
 	}
 	else {//in search view
 		while (itr != search_roster.end()) {
