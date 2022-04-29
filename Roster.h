@@ -14,7 +14,7 @@ class Roster //has the list of players and uses class Player to get info about e
 public:
 	
 	void clear_roster() { roster.clear(); }//to be used for the new season command ---- maybe switch to private eventually?
-	void make_player(const std::string& fname, const std::string& lname, const int yob, const bool reg_stat); //temporary, maybe
+	inline void make_player(const std::string& fname, const std::string& lname, const int yob, const bool reg_stat); //temporary, maybe
 	void print_roster(const std::string& file_name);
 	void save(const std::string& filename);
 	int count_paid();
@@ -32,161 +32,11 @@ private:
 	void print_cat(const std::string& category, std::ostream& out, Player& player_);
 };
 
-void Roster::make_player(const std::string& fname, const std::string& lname, const int yob, const bool reg_stat)
+inline void Roster::make_player(const std::string& fname, const std::string& lname, const int yob, const bool reg_stat)
 {
 	Player player_(fname, lname, yob, reg_stat, Roster::season_year_);
 	cout << "Season Year: " << season_year_ << endl;
 	if ((player_.get_age() >= 4) && (player_.get_age() <= 16))
 		roster[lname] = player_;
-}
-
-void Roster::print_cat(const std::string& category, std::ostream& out, Player& player_) {
-	auto itr = roster.begin();
-	int count = 0;
-	int cat_roster_size = 0; 
-
-	while (itr != roster.end()) {
-		player_ = itr->second;
-		if (player_.get_cat() == category) ++cat_roster_size;
-		++itr;
-	}
-
-	itr = roster.begin();
-	while (itr != roster.end()) {
-		player_ = itr->second;
-		if (player_.get_cat() == category) {
-			out << "Player " << count << "/" << cat_roster_size << std::endl;
-			out << "--------------------------------------\n";
-			out << player_.get_lname() << ',' << player_.get_fname() << std::endl;
-			out << player_.get_yob() << std::endl << player_.get_cat() << std::endl << player_.get_regstat() << std::endl;
-			out << "--------------------------------------\n\n";
-			count++;
-		}
-		++itr;
-	}
-}
-
-void Roster::print_roster(const std::string& file_name) {
-	std::ofstream out(file_name);
-	Player player_;
-	auto itr = roster.begin();
-	int count = 0;
-	int s_roster_size = search_roster.size();
-	if (true) {//in main view(true is a placeholder to prevent compiling/autocorrect errors
-		print_cat("U17", out, player_);
-		print_cat("U14", out, player_);
-		print_cat("U12", out, player_);
-		print_cat("U10", out, player_);
-		print_cat("U8", out, player_);
-		print_cat("U6", out, player_);
-	}
-	else {//in search view
-		while (itr != search_roster.end()) {
-			player_ = itr->second;
-			out << "Player " << count << "/" << s_roster_size << std::endl;
-			out << "--------------------------------------\n";
-			out << player_.get_lname() << ',' << player_.get_fname() << std::endl;
-			out << player_.get_yob() << std::endl << player_.get_cat() << std::endl << player_.get_regstat() << std::endl;
-			out << "--------------------------------------\n\n";
-			count++;
-			++itr;
-		}
-	}
-}
-
-int Roster::count_paid() {
-	Player player_;
-	num_paid = 0;
-	auto itr = roster.begin();
-	while (itr != roster.end()) {
-		player_ = itr -> second;
-		if (player_.get_regstat() == true) ++num_paid;
-		itr++;
-	}
-	return num_paid;
-}
-
-//void Roster::read_file(const std::string& filename) {
-//	std::ifstream in(filename);
-//	std::string dummy;//<-----------------------------best way is probably not to add dummy
-//	int idummy;
-//	std::string fname;
-//	std::string lname;
-//	int yob;
-//	bool reg_stat;
-//	in >> dummy >> idummy;
-//	in.ignore();
-//	in >> roster_open_size;
-//	in.ignore();
-//	getline(in, dummy);
-//	in >> lname;
-//	in.ignore();
-//	in >> fname;
-//	in.ignore();
-//	in >> yob;
-//	in.ignore();
-//	std::getline(in, dummy);
-//	in >> reg_stat;
-//	in.ignore();
-//	std::getline(in, dummy);
-//	in.ignore();
-//	for (int i = 0; i < roster_open_size; ++i) {
-//		std::getline(in, dummy);
-//		std::getline(in, dummy);
-//		in >> lname;
-//		in.ignore();
-//		in >> fname;
-//		in.ignore();
-//		in >> yob;
-//		in.ignore();
-//		std::getline(in, dummy);
-//		in >> reg_stat;
-//		in.ignore();
-//		std::getline(in, dummy);
-//		in.ignore();
-//	}
-//
-//}
-void Roster::read_file(const std::string& filename)
-{
-	ifstream in(filename);
-
-	int num_entries = 0;
-	in >> num_entries;
-	in >> season_year_;
-
-	std::string lname, fname;
-	int yob = 0;
-	bool regstat;
-	for (int i = 0; i < num_entries; ++i)
-	{
-		in >> lname >> fname >> regstat >> yob;
-		Player player(fname, lname, yob, regstat, season_year_);
-		roster[lname] = player;
-	}
-}
-
-void Roster::save(const std::string& filename)
-{
-	ofstream out(filename);
-
-	out << roster.size() <<  ' ' << season_year_ << endl;
-	for (auto itr = roster.begin(); itr != roster.end(); ++itr)
-	{
-		Player player = itr->second;
-		out << player.get_lname() << ' ' << player.get_fname() << endl;
-		out << player.get_regstat() << ' ' << player.get_yob() << endl;
-	}
-	out.close();
-}
-
-void Roster::create_search_roster()
-{
-	
-	cout << "Please enter known information about player." << endl
-		<< "If unkown leave field blank.";
-	cout << "First Name: ";
-	
-
 }
 #endif
