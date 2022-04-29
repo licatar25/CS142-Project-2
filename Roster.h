@@ -21,8 +21,9 @@ public:
 	int roster_size = roster.size();
 	int roster_open_size;
 	void read_file(const std::string& filename);
+	int season_year_;
 private:
-	int season_year_; 
+//	int season_year_; 
 	int num_paid;
 	roster_map_ roster;
 	roster_map_ search_roster;

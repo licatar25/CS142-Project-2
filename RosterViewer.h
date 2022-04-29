@@ -45,10 +45,11 @@ void RosterViewer::execute(const char command, bool& done)
 	switch (command) {
 	case '1': {std::cout << "Are you sure that you want to start a new season?(y/n)" << std::endl;//start new season
 		char confirm;
+		std::cin >> confirm;
 		if (confirm == 'y') {
 			roster_.clear_roster();
 			std::cout << "Please provide a season year: ";
-			std::cin >> roster_.year;
+			std::cin >> roster_.season_year_;
 		}
 		break;
 	}
