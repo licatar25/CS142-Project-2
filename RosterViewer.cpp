@@ -37,7 +37,7 @@ void RosterViewer::display_search()
 	string long_separator(50, '-');
 	cout << "Search View" << endl
 		<< long_separator << endl;
-	roster_.display_result;
+	// roster_.display_result;
 	cout << long_separator << endl
 		<< "| 1. Next   | 2. Previous | 3. Edit |" << endl
 		<< "| 4. Search | 5. Print    | 6. Exit |";
@@ -135,5 +135,4 @@ void RosterViewer::add_player() {
 void RosterViewer::search()
 {
 	search_ = true;
-	buffer_.
 }

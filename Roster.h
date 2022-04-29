@@ -35,7 +35,7 @@ private:
 inline void Roster::make_player(const std::string& fname, const std::string& lname, const int yob, const bool reg_stat)
 {
 	Player player_(fname, lname, yob, reg_stat, Roster::season_year_);
-	cout << "Season Year: " << season_year_ << endl;
+	std::cout << "Season Year: " << season_year_ << std::endl;
 	if ((player_.get_age() >= 4) && (player_.get_age() <= 16))
 		roster[lname] = player_;
 }
