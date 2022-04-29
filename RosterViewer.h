@@ -11,7 +11,7 @@
 class RosterViewer
 {
 public:
-	RosterViewer() {}
+	RosterViewer() : search_(false) {}
 	void run();//needs to be implemented, please update when implemented
 
 private:

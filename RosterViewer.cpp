@@ -76,6 +76,7 @@ void RosterViewer::execute(const char command, bool& done)
 		break;
 	}
 	case '3': {
+		cin.ignore();
 		search();
 		break;
 	}
@@ -98,21 +99,9 @@ void RosterViewer::execute(const char command, bool& done)
 		done = true;
 		break;
 	}
-	case 'n': { //next player in search view (maybe come up with a different set of chars to choose commands to avoid repeats)
+	}
 
-	}
-	case 'p': { //previous player in search view
 
-	}
-	case 'e': { //edit from within search view
-
-	}
-	case 's': { //search from within search view, probably just run the same function as in main
-
-	}
-	case ' ': { //print roster within search view
-	}
-	}
 }
 
 void RosterViewer::add_player() {
@@ -135,4 +124,5 @@ void RosterViewer::add_player() {
 void RosterViewer::search()
 {
 	search_ = true;
+	roster_.create_search_roster();
 }
