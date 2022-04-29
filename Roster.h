@@ -22,6 +22,8 @@ public:
 	int roster_open_size;
 	void read_file(const std::string& filename);
 	void set_season_year(int year) { season_year_ = year; }
+	void create_search_roster();
+
 private:
 	int season_year_; 
 	int num_paid;
@@ -176,5 +178,15 @@ void Roster::save(const std::string& filename)
 		out << player.get_regstat() << ' ' << player.get_yob() << endl;
 	}
 	out.close();
+}
+
+void Roster::create_search_roster()
+{
+	
+	cout << "Please enter known information about player." << endl
+		<< "If unkown leave field blank.";
+	cout << "First Name: ";
+	
+
 }
 #endif

@@ -17,16 +17,20 @@ public:
 private:
 	void execute(const char command, bool& done);
 	void display();
+	void display_menu();
+	void display_search();
 	void add_player();
+	void search();
+	
+	
 	Roster roster_;
-
+	bool search_;
 	std::string error_message_;
+
 
 };
 
 void RosterViewer::display() {
-	string long_separator(50, '-');
-
 	// system("cls"); // clear screen; windows
 
 	if (!error_message_.empty())
@@ -36,8 +40,18 @@ void RosterViewer::display() {
 	}
 	else
 		cout << "RosterViewer" << endl;
+	if (!search_)
+		display_menu();
+	else
+		display_search();
+}
 
-	cout << long_separator << endl
+void RosterViewer::display_menu()
+{
+	string long_separator(50, '-');
+
+	cout << "Main Menu" << endl
+		<< long_separator << endl
 		<< "1. Start a New Season" << endl
 		<< "2. Add a player" << endl
 		<< "3. Search for a player" << endl
@@ -45,6 +59,17 @@ void RosterViewer::display() {
 		<< "5. Display statistics" << endl
 		<< "6. Quit" << endl
 		<< long_separator << endl;
+}
+
+void RosterViewer::display_search()
+{
+	string long_separator(50, '-');
+	cout << "Search View" << endl
+		<< long_separator << endl;
+	roster_.display_result;
+	cout << long_separator << endl
+		<< "| 1. Next   | 2. Previous | 3. Edit |" << endl
+		<< "| 4. Search | 5. Print    | 6. Exit |";
 }
 
 void RosterViewer::run()
@@ -64,7 +89,7 @@ void RosterViewer::run()
 void RosterViewer::execute(const char command, bool& done)
 {
 	switch (command) {
-	case '1': {std::cout << "Are you sure that you want to start a new season?(y/n)" << std::endl;//start new season
+	case '1': {std::cout << "Are you sure that you want to start a new season? (y/n) ";//start new season
 		char confirm;
 		std::cin >> confirm;
 		if (confirm == 'y') {
@@ -80,7 +105,8 @@ void RosterViewer::execute(const char command, bool& done)
 		add_player();//add player
 		break;
 	}
-	case '3': {;//search for player
+	case '3': {
+		search();
 		break;
 	}
 	case '4': {
@@ -136,6 +162,11 @@ void RosterViewer::add_player() {
 	roster_.make_player(fname, lname, yob, reg_stat);
 }
 
+void RosterViewer::search()
+{
+	search_ = true;
+	buffer_.
+}
 
 
 #endif
