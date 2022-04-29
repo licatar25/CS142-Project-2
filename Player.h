@@ -12,7 +12,7 @@ public:
 	Player(std::string fname, std::string lname, int yob, bool reg_stat,int season_year) : 
 		f_name_(fname), l_name_(lname), yob_(yob), reg_stat_(reg_stat) {
 		age_ = season_year - yob_;
-		category_ = calc_category();
+		calc_category();
 	}
 	inline std::string get_lname() { return l_name_; }
 	inline std::string get_fname() { return f_name_; }
@@ -21,7 +21,7 @@ public:
 	inline std::string get_cat() { return category_; }
 	inline int get_age() { return age_; }
 private:
-	std::string calc_category();
+	void calc_category();
 	std::string f_name_;
 	std::string l_name_;
 	int yob_;
@@ -31,7 +31,7 @@ private:
 	std::string error_message = "Player too young or too old. ";//maybe expand on this
 };
 
-std::string Player::calc_category() {
+void Player::calc_category() {
 	if ((age_ < 17) && (age_ >= 14)) category_ = "U17";
 	if ((age_ < 14) && (age_ >= 12)) category_ = "U14";
 	if ((age_ < 12) && (age_ >= 10)) category_ = "U12";

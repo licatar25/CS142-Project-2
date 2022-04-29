@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	Roster roster;
+	RosterViewer roster;
 	roster.run();
 
 	return 0;

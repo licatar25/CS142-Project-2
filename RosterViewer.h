@@ -77,19 +77,19 @@ void RosterViewer::execute(const char command, bool& done)
 		done = true;
 		break;
 	}
-	case 'n': { //next player in search view
+	case 'n': { //next player in search view (maybe come up with a different set of chars to choose commands to avoid repeats)
 
 	}
 	case 'p': { //previous player in search view
 
 	}
-	case 'e': { // edit from within search view
+	case 'e': { //edit from within search view
 
 	}
 	case 's': { //search from within search view, probably just run the same function as in main
 
 	}
-	case 'p': { //print roster within search view
+	case ' ': { //print roster within search view
 	}
 	}
 }
