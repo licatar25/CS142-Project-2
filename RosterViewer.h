@@ -7,7 +7,6 @@
 #include <string>
 
 #include "Roster.h"
-#include "Player.h"
 
 class RosterViewer
 {

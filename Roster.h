@@ -7,7 +7,6 @@
 #include <string>
 
 #include "Player.h"
-#include "RosterViewer.h"
 
 using roster_map_ = std::map<std::string, Player>;
 class Roster //has the list of players and uses class Player to get info about each player

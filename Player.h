@@ -2,9 +2,6 @@
 #define _Player_
 #include <iostream>
 
-#include "Roster.h"
-#include "RosterViewer.h"
-
 class Player//contains the actual information of each player
 {
 public:
