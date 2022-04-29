@@ -20,10 +20,31 @@ private:
 	void addplayer();
 	//Roster roster_;
 
+	std::string error_message_;
+
 };
 
 void RosterViewer::display() {
-	roster_.display();
+		string long_separator(50, '-');
+
+	system("cls"); // clear screen; windows
+
+	if (!error_message_.empty())
+	{
+		cout << "ERROR: " + error_message_ << endl;
+		error_message_.clear();
+	}
+	else
+		cout << "RosterViewer" << endl;
+
+	cout << long_separator << endl
+		<< "1. Start a New Season" << endl
+		<< "2. Add a player" << endl
+		<< "3. Search for a player" << endl
+		<< "4. Print a list of players" << endl
+		<< "5. Display statistics" << endl
+		<< "6. Quit" << endl
+		<< long_separator << endl;
 }
 
 void RosterViewer::run()
