@@ -15,7 +15,7 @@ public:
 	
 	void clear_roster() { roster.clear(); }//to be used for the new season command ---- maybe switch to private eventually?
 	inline void make_player(const std::string& fname, const std::string& lname, const int yob, const bool reg_stat); //temporary, maybe
-	void print_roster(const std::string& file_name);
+	void print_roster(const bool search, const std::string& file_name);
 	void save(const std::string& filename);
 	int count_paid();
 	int size() { return roster.size(); }
@@ -23,6 +23,9 @@ public:
 	void read_file(const std::string& filename);
 	void set_season_year(int year) { season_year_ = year; }
 	void create_search_roster();
+	void display_current_player();
+	void display_next_player();
+	void display_prev_player();
 
 private:
 	int season_year_; 
@@ -30,6 +33,7 @@ private:
 	roster_map_ roster;
 	roster_map_ search_roster;
 	void print_cat(const std::string& category, std::ostream& out, Player& player_);
+	roster_map_::iterator itr_current_player_;
 };
 
 inline void Roster::make_player(const std::string& fname, const std::string& lname, const int yob, const bool reg_stat)

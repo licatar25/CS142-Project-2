@@ -27,13 +27,13 @@ void Roster::print_cat(const string& category, ostream& out, Player& player_) {
 	}
 }
 
-void Roster::print_roster(const string& file_name) {
+void Roster::print_roster(const bool search, const string& file_name) {
 	ofstream out(file_name);
 	Player player_;
 	auto itr = roster.begin();
 	int count = 0;
 	int s_roster_size = search_roster.size();
-	if (true) {//in main view(true is a placeholder to prevent compiling/autocorrect errors
+	if (!search) {//in main view(true is a placeholder to prevent compiling/autocorrect errors
 		print_cat("U17", out, player_);
 		print_cat("U14", out, player_);
 		print_cat("U12", out, player_);
@@ -102,6 +102,7 @@ void Roster::save(const string& filename)
 
 void Roster::create_search_roster()
 {
+	search_roster.clear();
 	string fname, lname, category, str_reg_stat, str_yob, keyword;
 	cout << "Please enter known information about player." << endl
 		<< "If unknown leave field blank." << endl;
@@ -136,4 +137,33 @@ void Roster::create_search_roster()
 			(str_yob.find(keyword) != string::npos))
 				search_roster[lname] = player;
 		}
+}
+
+void Roster::display_current_player()
+{
+	if (search_roster.empty())
+	{ 
+		cout << "Could not find any results which match search." << endl;
+		return;
+	}
+	itr_current_player_ = search_roster.begin();
+	Player player = itr_current_player_->second;
+
+	std::cout << player.get_lname() << ", " << player.get_fname() << endl
+		<< player.get_yob() << endl
+		<< player.get_cat() << endl;
+	if (player.get_regstat() == true)
+		cout << "Paid" << endl;
+	else if (player.get_regstat() == false)
+		cout << "Unpaid" << endl;
+}
+
+void Roster::display_next_player()
+{
+
+}
+
+void Roster::display_prev_player()
+{
+
 }
