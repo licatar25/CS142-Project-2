@@ -13,21 +13,21 @@ class RosterViewer
 public:
 	RosterViewer() {}
 	void run();//needs to be implemented, please update when implemented
-	Roster roster_;
+
 private:
 	void execute(const char command, bool& done);
 	void display();
-	void addplayer();
-	//Roster roster_;
+	void add_player();
+	Roster roster_;
 
 	std::string error_message_;
 
 };
 
 void RosterViewer::display() {
-		string long_separator(50, '-');
+	string long_separator(50, '-');
 
-	system("cls"); // clear screen; windows
+	// system("cls"); // clear screen; windows
 
 	if (!error_message_.empty())
 	{
@@ -70,31 +70,35 @@ void RosterViewer::execute(const char command, bool& done)
 		if (confirm == 'y') {
 			roster_.clear_roster();
 			std::cout << "Please provide a season year: ";
-			std::cin >> roster_.season_year_;
+			int year = 0;
+			std::cin >> year;
+			roster_.set_season_year(year);
 		}
 		break;
 	}
-	case '2': {addplayer();//add player
+	case '2': {
+		add_player();//add player
 		break;
 	}
 	case '3': {;//search for player
 		break;
 	}
-	case '4': {std::cout << "Enter the name of the file that you want the roster to be printed to: ";//print to file
+	case '4': {
+		std::cout << "Enter the name of the file that you want the roster to be printed to: ";//print to file
 		std::string file_name;
 		std::cin >> file_name;
 		roster_.print_roster(file_name);
 		break;
 	}
 	case '5': {//stats
-		std::cout << "--------------------------------------\n\nNumber of Players: " << roster_.roster_size;
+		std::cout << "--------------------------------------\n\nNumber of Players: " << roster_.size();
 		std::cout << "\n\nNumber of Paid Players: " << roster_.count_paid();
-		std::cout << "\n\nNumber of Unpaid Players: " << roster_.roster_size - roster_.count_paid();
+		std::cout << "\n\nNumber of Unpaid Players: " << roster_.size() - roster_.count_paid();
 		std::cout << "\n\n--------------------------------------\n\n";
 		break;
 	}
 	case '6': {//save and quit
-		roster_.print_roster("roster.txt");
+		roster_.save("Roster.txt");
 		done = true;
 		break;
 	}
@@ -115,7 +119,7 @@ void RosterViewer::execute(const char command, bool& done)
 	}
 }
 
-void RosterViewer::addplayer() {
+void RosterViewer::add_player() {
 	std::string fname;
 	std::string lname;
 	int yob;

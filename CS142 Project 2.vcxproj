@@ -155,6 +155,7 @@
     <Text Include="InteractionDiagrams.txt" />
     <Text Include="ProgramSpecification.txt" />
     <Text Include="Roster.txt" />
+    <Text Include="Text.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

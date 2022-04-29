@@ -21,13 +21,13 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Roster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RosterViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Roster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,6 +56,9 @@
       <Filter>Source Files\Documentation</Filter>
     </Text>
     <Text Include="Roster.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="Text.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>
