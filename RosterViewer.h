@@ -99,12 +99,15 @@ void RosterViewer::addplayer() {
 	std::string lname;
 	int yob;
 	bool reg_stat;
+	std::string registration;
 	std::cout << "Please enter the first and last name of the player: ";
 	std::cin >> fname >> lname;
 	std::cout << "\n\nPlease enter the year of birth of the player: ";
 	std::cin >> yob;
 	std::cout << "\n\nPlease enter the registration status of the player: ";
-	std::cin >> reg_stat;
+	std::cin >> registration;
+	if ((registration == "Paid") || (registration == "paid")) reg_stat = true;
+	if ((registration == "Unpaid") || (registration == "unpaid")) reg_stat = false;
 	roster_.make_player(fname, lname, yob, reg_stat);
 }
 
