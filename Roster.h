@@ -27,7 +27,7 @@ private:
 	int num_paid;
 	roster_map_ roster;
 	roster_map_ search_roster;
-	void print_cat(const std::string& category, std::ostream& out, Player player_);
+	void print_cat(const std::string& category, std::ostream& out, Player& player_);
 };
 
 void Roster::make_player(const std::string& fname, const std::string& lname, const int yob, const bool reg_stat) {
@@ -39,7 +39,7 @@ void Roster::display() {
 
 }
 
-void Roster::print_cat(const std::string& category, std::ostream& out, Player player_) {
+void Roster::print_cat(const std::string& category, std::ostream& out, Player& player_) {
 	auto itr = roster.begin();
 	int count = 0;
 	int cat_roster_size; 
