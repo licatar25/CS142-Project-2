@@ -68,7 +68,6 @@ void Roster::print_roster(const std::string& file_name) {
 	Player player_;
 	auto itr = roster.begin();
 	int count = 0;
-	int roster_size = roster.size();
 	int s_roster_size = search_roster.size();
 	if (true) {//in main view(true is a placeholder to prevent compiling/autocorrect errors
 		print_cat("U17",out,player_);
