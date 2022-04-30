@@ -19,13 +19,13 @@ public:
 	void save(const std::string& filename);
 	int count_paid();
 	int size() { return roster.size(); }
-	int roster_open_size;
 	void read_file(const std::string& filename);
 	void set_season_year(int year) { season_year_ = year; }
 	void create_search_roster();
 	void display_current_player();
 	void display_next_player();
 	void display_prev_player();
+	void update();
 
 private:
 	int season_year_; 
@@ -34,6 +34,7 @@ private:
 	roster_map_ search_roster;
 	void print_cat(const std::string& category, std::ostream& out, Player& player_);
 	roster_map_::iterator itr_current_player_;
+	int int_current_player_;
 };
 
 inline void Roster::make_player(const std::string& fname, const std::string& lname, const int yob, const bool reg_stat)

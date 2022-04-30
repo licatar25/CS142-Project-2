@@ -1,6 +1,7 @@
 #ifndef _Player_
 #define _Player_
 #include <iostream>
+#include <string>
 
 class Player//contains the actual information of each player
 {
@@ -17,6 +18,7 @@ public:
 	inline bool get_regstat() { return reg_stat_; }
 	inline std::string get_cat() { return category_; }
 	inline int get_age() { return age_; }
+	void edit();
 private:
 	void calc_category();
 	std::string f_name_;

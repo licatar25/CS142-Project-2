@@ -59,6 +59,7 @@ void RosterViewer::run()
 
 void RosterViewer::execute(const char command, bool& done)
 {
+	
 	if (!search_) {
 		switch (command) {
 		case '1': {cout << "Are you sure that you want to start a new season? (y/n) ";//start new season
@@ -106,7 +107,7 @@ void RosterViewer::execute(const char command, bool& done)
 		}
 		}
 	}
-	if (search_)
+	else if (search_)
 		switch (command) {
 		case '1': {
 			roster_.display_next_player();
@@ -117,7 +118,7 @@ void RosterViewer::execute(const char command, bool& done)
 			break;
 		}
 		case '3': {
-			// roster_.edit_player();
+			roster_.update();
 			break;
 		}
 		case '4': {

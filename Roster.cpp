@@ -43,7 +43,7 @@ void Roster::print_roster(const bool search, const string& file_name) {
 	}
 	else {//in search view
 		while (itr != search_roster.end()) {
-			player_ = itr->second;
+			Player player = itr->second;
 			out << "Player " << count << "/" << s_roster_size << endl;
 			out << "--------------------------------------\n";
 			out << player_.get_lname() << ',' << player_.get_fname() << endl;
@@ -103,6 +103,7 @@ void Roster::save(const string& filename)
 void Roster::create_search_roster()
 {
 	search_roster.clear();
+	int_current_player_ = 1;
 	string fname, lname, category, str_reg_stat, str_yob, keyword;
 	cout << "Please enter known information about player." << endl
 		<< "If unknown leave field blank." << endl;
@@ -118,25 +119,26 @@ void Roster::create_search_roster()
 	getline(cin, str_yob);
 	cout << "Keyword: ";
 	getline(cin, keyword);
+	bool reg_stat = false;
+	if (str_reg_stat == "Paid" || str_reg_stat == "paid" || str_reg_stat == "1")
+		reg_stat = true;
 
-
-	int i = 0;
 	if (fname.empty() && category.empty() && str_reg_stat.empty() && str_yob.empty() && keyword.empty())
 		search_roster[lname] = roster.find(lname)->second;
 	else
 		for (roster_map_::iterator itr = roster.begin(); itr != roster.end(); ++itr)
 		{
 		Player player = itr->second;
-		if (((fname.empty() || player.get_fname() == fname) &&
+		if ((fname.empty() || player.get_fname() == fname) &&
 			(lname.empty() || player.get_lname() == lname) &&
 			(category.empty() || player.get_cat() == category) &&
-			(str_reg_stat.empty() || player.get_regstat() == stoi(str_reg_stat)) &&
-			(str_yob.empty() || player.get_yob() == stoi(str_yob)))) /*||
-			(fname.find(keyword) != string::npos) ||
-			(lname.find(keyword) != string::npos) ||
-			(category.find(keyword) != string::npos) ||
-			(str_reg_stat.find(keyword) != string::npos) ||
-			(str_yob.find(keyword) != string::npos))*/
+			(str_reg_stat.empty() || player.get_regstat() == reg_stat) &&
+			(str_yob.empty() || player.get_yob() == stoi(str_yob)) &&
+			(keyword.empty()))
+				search_roster[player.get_lname()] = player;
+		if ((!keyword.empty()) &&
+			((player.get_fname().find(keyword) != string::npos) ||
+			(player.get_lname().find(keyword) != string::npos)))
 				search_roster[player.get_lname()] = player;
 		}
 	itr_current_player_ = search_roster.begin();
@@ -151,7 +153,8 @@ void Roster::display_current_player()
 	}
 	Player player = itr_current_player_->second;
 
-	std::cout << player.get_lname() << ", " << player.get_fname() << endl
+	std::cout << "Player " << int_current_player_ << '/' << search_roster.size() << endl
+		<< player.get_lname() << ", " << player.get_fname() << endl
 		<< player.get_yob() << endl
 		<< player.get_cat() << endl;
 	if (player.get_regstat() == true)
@@ -163,16 +166,29 @@ void Roster::display_current_player()
 void Roster::display_next_player()
 {
 	itr_current_player_++;
+	int_current_player_++;
 	if (itr_current_player_ == search_roster.end())
 	{
 		itr_current_player_ = search_roster.begin();
+		int_current_player_ = 1;
 	}
 }
 
 void Roster::display_prev_player()
 {
 	if (itr_current_player_ == search_roster.begin())
+	{
 		itr_current_player_ = --search_roster.end();
+		int_current_player_ = search_roster.size();
+	}
 	else
+	{
 		itr_current_player_--;
+		int_current_player_--;
+	}
+}
+
+void Roster::update(){
+	Player player_ = itr_current_player_->second;
+	player_.edit();
 }
