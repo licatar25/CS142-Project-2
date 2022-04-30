@@ -33,7 +33,7 @@ void Roster::print_roster(const bool search, const string& file_name) {
 	auto itr = roster.begin();
 	int count = 0;
 	int s_roster_size = search_roster.size();
-	if (!search) {//in main view(true is a placeholder to prevent compiling/autocorrect errors
+	if (!search) {//in main view
 		print_cat("U17", out, player_);
 		print_cat("U14", out, player_);
 		print_cat("U12", out, player_);
@@ -119,23 +119,25 @@ void Roster::create_search_roster()
 	cout << "Keyword: ";
 	getline(cin, keyword);
 
+
+	int i = 0;
 	if (fname.empty() && category.empty() && str_reg_stat.empty() && str_yob.empty() && keyword.empty())
 		search_roster[lname] = roster.find(lname)->second;
 	else
-		for (auto itr = roster.begin(); itr != roster.end(); ++itr)
+		for (roster_map_::iterator itr = roster.begin(); itr != roster.end(); ++itr)
 		{
 		Player player = itr->second;
 		if (((fname.empty() || player.get_fname() == fname) &&
 			(lname.empty() || player.get_lname() == lname) &&
 			(category.empty() || player.get_cat() == category) &&
 			(str_reg_stat.empty() || player.get_regstat() == stoi(str_reg_stat)) &&
-			(str_yob.empty() || player.get_yob() == stoi(str_yob))) ||
+			(str_yob.empty() || player.get_yob() == stoi(str_yob)))) /*||
 			(fname.find(keyword) != string::npos) ||
 			(lname.find(keyword) != string::npos) ||
 			(category.find(keyword) != string::npos) ||
 			(str_reg_stat.find(keyword) != string::npos) ||
-			(str_yob.find(keyword) != string::npos))
-				search_roster[lname] = player;
+			(str_yob.find(keyword) != string::npos))*/
+				search_roster[player.get_lname()] = player;
 		}
 	itr_current_player_ = search_roster.begin();
 }
@@ -158,22 +160,19 @@ void Roster::display_current_player()
 		cout << "Unpaid" << endl;
 }
 
-bool Roster::display_next_player()
+void Roster::display_next_player()
 {
 	itr_current_player_++;
 	if (itr_current_player_ == search_roster.end())
 	{
-		--itr_current_player_;
-		return false;
+		itr_current_player_ = search_roster.begin();
 	}
-	else
-		return true;
 }
 
-bool Roster::display_prev_player()
+void Roster::display_prev_player()
 {
 	if (itr_current_player_ == search_roster.begin())
-		return false;
+		itr_current_player_ = --search_roster.end();
 	else
-		return true;
+		itr_current_player_--;
 }
