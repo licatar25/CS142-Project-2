@@ -109,11 +109,13 @@ void RosterViewer::execute(const char command, bool& done)
 	if (search_)
 		switch (command) {
 		case '1': {
-			roster_.display_next_player();
+			if (!roster_.display_next_player())
+				error_message_ = "End of results reached.";
 			break;
 		}
 		case '2': {
-			roster_.display_prev_player();
+			if (!roster_.display_prev_player())
+				error_message_ = "Beginning of results reached.";
 			break;
 		}
 		case '3': {

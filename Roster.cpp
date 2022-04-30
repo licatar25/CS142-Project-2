@@ -137,6 +137,7 @@ void Roster::create_search_roster()
 			(str_yob.find(keyword) != string::npos))
 				search_roster[lname] = player;
 		}
+	itr_current_player_ = search_roster.begin();
 }
 
 void Roster::display_current_player()
@@ -146,7 +147,6 @@ void Roster::display_current_player()
 		cout << "Could not find any results which match search." << endl;
 		return;
 	}
-	itr_current_player_ = search_roster.begin();
 	Player player = itr_current_player_->second;
 
 	std::cout << player.get_lname() << ", " << player.get_fname() << endl
@@ -158,12 +158,22 @@ void Roster::display_current_player()
 		cout << "Unpaid" << endl;
 }
 
-void Roster::display_next_player()
+bool Roster::display_next_player()
 {
-
+	itr_current_player_++;
+	if (itr_current_player_ == search_roster.end())
+	{
+		--itr_current_player_;
+		return false;
+	}
+	else
+		return true;
 }
 
-void Roster::display_prev_player()
+bool Roster::display_prev_player()
 {
-
+	if (itr_current_player_ == search_roster.begin())
+		return false;
+	else
+		return true;
 }

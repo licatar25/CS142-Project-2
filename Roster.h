@@ -24,8 +24,8 @@ public:
 	void set_season_year(int year) { season_year_ = year; }
 	void create_search_roster();
 	void display_current_player();
-	void display_next_player();
-	void display_prev_player();
+	bool display_next_player();
+	bool display_prev_player();
 
 private:
 	int season_year_; 
