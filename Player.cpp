@@ -12,23 +12,28 @@ void Player::calc_category() {
 
 void Player::edit(){
 	cout << "Enter the information you want to modify." << endl
-		<< "Leave blank if you do not want to make a change";
-	string fname, lname, yob, reg_stat;
+		<< "Leave blank if you do not want to make a change" << endl;
+	string fname, lname, reg_stat;
+	int yob;
+	cin.ignore();
 	cout << "First Name: ";
 	getline(cin, fname);
 	cout << "Last Name: ";
 	getline(cin, lname);
 	cout << "Year of Birth: ";
-	getline(cin, yob);
+	cin >> yob;
+	cin.ignore();
 	cout << "Registration Status: ";
+	getline(cin, reg_stat);
 
 	if (!fname.empty())
 		f_name_ = fname;
 	if (!lname.empty())
 		l_name_ = lname;
-	if (!yob.empty())
+	if (true)
 	{
-		yob_ = stoi(yob);
+		yob_ = yob;
+		age_ = yob_ - 2022;
 		calc_category();
 	}
 	if (!reg_stat.empty())

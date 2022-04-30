@@ -19,6 +19,7 @@ public:
 	inline std::string get_cat() { return category_; }
 	inline int get_age() { return age_; }
 	void edit();
+
 private:
 	void calc_category();
 	std::string f_name_;

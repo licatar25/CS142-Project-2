@@ -42,12 +42,14 @@ void Roster::print_roster(const bool search, const string& file_name) {
 		print_cat("U6", out, player_);
 	}
 	else {//in search view
+		Player player;
+		auto itr = search_roster.begin();
 		while (itr != search_roster.end()) {
-			Player player = itr->second;
+			player = itr->second;
 			out << "Player " << count << "/" << s_roster_size << endl;
 			out << "--------------------------------------\n";
-			out << player_.get_lname() << ',' << player_.get_fname() << endl;
-			out << player_.get_yob() << endl << player_.get_cat() << endl << player_.get_regstat() << endl;
+			out << player.get_lname() << ',' << player.get_fname() << endl;
+			out << player.get_yob() << endl << player.get_cat() << endl << player.get_regstat() << endl;
 			out << "--------------------------------------\n\n";
 			count++;
 			++itr;

@@ -2,7 +2,7 @@
 using namespace std;
 
 void RosterViewer::display() {
-	// system("cls"); // clear screen; windows
+	system("cls"); // clear screen; windows
 
 	if (!error_message_.empty())
 	{
